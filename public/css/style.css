@@ -1,0 +1,103 @@
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+
+/* Clear fix hack */
+.clearfix:after {
+     content: ".";
+     display: block;
+     clear: both;
+     visibility: hidden;
+     line-height: 0;
+     height: 0;
+}
+
+.clear {
+	clear: both;
+}
+
+/******************************************
+/* BASE STYLES
+/*******************************************/
+
+body {
+
+}
+
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+header {
+
+}
+
+footer {
+
+}
+
+.user {
+    display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box:hover {
+  background-color: lightgray;
+}
+
+.no-hover:hover {
+  background-color: initial;
+}
+
+.flex-width{
+  width: 60%;
+}
+
+/* CSS code for the green and red borders */
+
+.correct {
+  
+}
+
+.wrong {
+  
+}
+
+li{
+  list-style: none;
+}
+
+.passed {
+  background-color: green;
+  color: black;
+  font-weight: bold;
+}
+
+.failed {
+  background-color: red;
+  color: black;
+  font-weight: bold;
+}
+
+

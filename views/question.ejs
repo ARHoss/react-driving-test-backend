@@ -1,0 +1,124 @@
+<%- include('partials/header') -%>
+
+
+<div class="container has-text-centered">
+
+
+    <div class="columns mt-5">
+        <div class="column is-full">
+            <div class="box no-hover is-flex is-justify-content-center">
+                <h2 class="title flex-width">
+                    <%= question.title %>
+                    
+                </h2>
+                <% if(question.imageURL){ %>
+                    <figure class="image flex-width is-256x256">
+                        <img src=<%= question.imageURL %> >
+                    </figure>
+                <% } %>
+            </div>
+        </div>
+    </div> 
+
+    <div id="questionAnswer" class="columns mt-5 is-hidden">
+        <div class="column is-full">
+            <div class="box no-hover is-flex is-justify-content-center">
+
+
+                    
+                <!-- HTML code for displaying the answers -->
+                <ul>
+                    <li>
+                        <div class="content box is-fullwidth">
+                            <a href="#" 
+                                class="subtitle is-3 answer" 
+                                data-answer="<%= question.answer[0] %>"
+                            >
+                                <%= question.answer[0] %>   
+                            </a> 
+                        </div>
+                    </li>
+                    
+                    
+                    <li>
+                        <div class="content box is-fullwidth">
+                            <a href="#" 
+                                class="subtitle is-3 answer"
+                                data-answer="<%= question.answer[1] %>"    
+                            >
+                            <%= question.answer[1] %>   
+                            </a> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content box is-fullwidth">
+                            <a href="#" 
+                                class="subtitle is-3 answer"
+                                data-answer="<%= question.answer[2] %>"    
+                            >
+                            <%= question.answer[2] %>   
+                            </a> 
+                        </div>
+                    </li>
+                    <li>
+                        <div class="content box is-fullwidth">
+                            <a href="#" 
+                                class="subtitle is-3 answer"
+                                data-answer="<%= question.answer[3] %>"    
+                            >
+                            <%= question.answer[3] %>   
+                            </a> 
+                        </div>
+                    </li>
+                </ul>
+                <a href="#" id="realAnswer" class="is-hidden" data-answer="<%= answer %>"></a>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="columns mt-5">
+        <div class="column is-full">
+            <div class="box no-hover is-flex is-justify-content-center">
+
+                        
+                <a href="#" id="showAnswer" class="button is-info">
+                    <i id="answerIcon" class="fa fa-eye-slash">Show Answer</i>
+                </a>
+                        
+                 
+            </div>
+        </div>
+    </div>
+
+    <div id="next" class="columns mt-5 isDisabled">
+        <div class="column is-full">
+            <div class="box no-hover is-flex is-justify-content-center">
+                <a href="/question/nextQuestion/<%= question._id %>" class= "button is-success">
+                    <span class="is-size-5">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+        
+        
+    <div class="columns mt-5">
+        <div class="column is-full <%= user.role %>">
+            <div class="box no-hover is-flex is-justify-content-center">   
+                <form
+                    class="col-1"
+                    action="/question/deleteQuestion/<%= question._id %>?_method=DELETE"
+                    method="POST"
+                >
+                    <button class="button is-danger showTrashIcon fa fa-trash" type="submit"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+<%- include('partials/footer') -%>
