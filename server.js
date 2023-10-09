@@ -91,5 +91,6 @@ app.use((req, res, next) => {
 
 //Server Running
 app.listen(process.env.PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`);
+  let mode = process.env.NODE_ENV != undefined ? process.env.NODE_ENV : 'Production';
+  console.log(`Server running in ${mode} mode on port ${process.env.PORT}`);
 });
