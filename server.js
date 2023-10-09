@@ -90,10 +90,10 @@ app.use(
     // saveUninitialized: true,
     cookie: {
       httpOnly: true,
-      // secure: false,  // Set to true if you're using HTTPS
-      secure: true,  // Set to true if you're using HTTPS
+      secure: false,  // Set to true if you're using HTTPS
+      // secure: true,  // Set to true if you're using HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'None' // new code
+      // sameSite: 'None' // new code
     },
     // Storing session info in database
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
