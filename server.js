@@ -51,25 +51,6 @@ if(process.env.NODE_ENV === 'development'){
 //Use forms for put / delete
 app.use(methodOverride("_method"));
 
-// Saves session into database
-app.use(
-  session({
-    // Makes it harder to for cookies to reverse-engineer
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    // saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      //secure: false,  // Set to true if you're using HTTPS
-      secure: true,  // Set to true if you're using HTTPS
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'None' // new code
-    },
-    // Storing session info in database
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
-);
 
 // Cors
 
@@ -97,6 +78,27 @@ app.use(cors({
   },
   credentials: true
 }));
+
+
+// Saves session into database
+app.use(
+  session({
+    // Makes it harder to for cookies to reverse-engineer
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    // saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      //secure: false,  // Set to true if you're using HTTPS
+      secure: true,  // Set to true if you're using HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      sameSite: 'None' // new code
+    },
+    // Storing session info in database
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
 
 
 // Passport handling authentication
