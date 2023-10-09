@@ -69,10 +69,16 @@ app.use(
   })
 );
 
+// Old code
+// app.use(cors({
+//   origin: 'http://localhost:5000',  // Adjust this to your React app's address
+//   credentials: true
+// }));
 app.use(cors({
-  origin: 'https://qvch53-5000.csb.app/',  // Adjust this to your React app's address
-  credentials: true
+  origin: ['https://qvch53-5000.csb.app', 'http://localhost:5000'],
+  credentials: false  // Can't use credentials with multiple fixed origins
 }));
+
 
 // Passport handling authentication
 app.use(passport.initialize());
