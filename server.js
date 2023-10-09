@@ -82,7 +82,7 @@ app.use(
 //   credentials: true
 // }));
 
-const allowedOrigins = ['https://qvch53-5000.csb.app:5000', 'http://localhost:5000'];
+const allowedOrigins = ['https://qvch53-5000.csb.app', 'http://localhost:5000'];
 
 app.use(cors({
   origin: function(origin, callback) {
