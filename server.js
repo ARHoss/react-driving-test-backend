@@ -74,9 +74,19 @@ app.use(
 //   origin: 'http://localhost:5000',  // Adjust this to your React app's address
 //   credentials: true
 // }));
+// Cors
+const allowedOrigins = ['https://qvch53-5000.csb.app', 'http://localhost:5000'];
+
 app.use(cors({
-  origin: ['https://qvch53-5000.csb.app', 'http://localhost:5000'],
-  credentials: false  // Can't use credentials with multiple fixed origins
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
 }));
 
 
