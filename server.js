@@ -70,7 +70,7 @@ app.use(
 );
 
 app.use(cors({
-  origin: 'http://localhost:5000',  // Adjust this to your React app's address
+  origin: 'https://qvch53-5000.csb.app/',  // Adjust this to your React app's address
   credentials: true
 }));
 
