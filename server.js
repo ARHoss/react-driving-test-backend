@@ -9,7 +9,7 @@ const passport = require("passport");
 // Handles cookies and sessions
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const cors = require('cors');
+const cors = require("cors");
 //Use forms for put / delete
 const methodOverride = require("method-override");
 // Helps in creating flash notification for login
@@ -22,7 +22,6 @@ const connectDB = require("./config/database");
 // Linking to routes
 const mainRoutes = require("./routes/main");
 const questionRoutes = require("./routes/questions");
-
 
 // Environment variables
 require("dotenv").config({ path: "./config/.env" });
@@ -44,13 +43,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Logging only used during development - Creates log for views
-if(process.env.NODE_ENV === 'development'){
+if (process.env.NODE_ENV === "development") {
   app.use(logger("dev"));
 }
 
 //Use forms for put / delete
 app.use(methodOverride("_method"));
-
 
 // Cors
 
@@ -65,20 +63,22 @@ app.use(methodOverride("_method"));
 //   credentials: true
 // }));
 
-const allowedOrigins = ['https://qvch53-5000.csb.app', 'http://localhost:5000'];
+const allowedOrigins = ["https://qvch53-5000.csb.app", "http://localhost:5000"];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
-
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg =
+          "The CORS policy for this site does not allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  }),
+);
 
 // Saves session into database
 app.use(
@@ -90,16 +90,15 @@ app.use(
     // saveUninitialized: true,
     cookie: {
       httpOnly: true,
-      // secure: false,  // Set to true if you're using HTTPS
-      secure: true,  // Set to true if you're using HTTPS
+      secure: false, // Set to true if you're using HTTPS
+      // secure: true,  // Set to true if you're using HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
-      sameSite: 'None' // new code
+      // sameSite: 'None' // new code
     },
     // Storing session info in database
     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
+  }),
 );
-
 
 // Passport handling authentication
 app.use(passport.initialize());
@@ -113,11 +112,12 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/question", questionRoutes);
 app.use((req, res, next) => {
-  res.render('errors/page-not-found.ejs')
-})
+  res.render("errors/page-not-found.ejs");
+});
 
 //Server Running
 app.listen(process.env.PORT, () => {
-  let mode = process.env.NODE_ENV != undefined ? process.env.NODE_ENV : 'Production';
+  let mode =
+    process.env.NODE_ENV != undefined ? process.env.NODE_ENV : "Production";
   console.log(`Server running in ${mode} mode on port ${process.env.PORT}`);
 });
